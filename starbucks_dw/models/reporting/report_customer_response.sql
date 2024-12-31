@@ -13,7 +13,7 @@ gender,
 offer_type,
 {{ dbt_utils.pivot(
       'transaction_status',
-      dbt_utils.get_column_values(ref('fct_customer_transactions'), 'transaction_status')
+      dbt_utils.get_column_values(table=ref('fct_customer_transactions'), column='transaction_status')
 ) }}
 FROM {{ ref('fct_customer_transactions') }} fct
 JOIN marts.dim_offer dof on fct.offer_id=dof.offer_id

@@ -24,7 +24,7 @@ offer_channel,
 'all' as offer_type,
 {{ dbt_utils.pivot(
       'transaction_status',
-      dbt_utils.get_column_values(ref('fct_offer_transactions'), 'transaction_status')
+      dbt_utils.get_column_values(table=ref('fct_offer_transactions'), column='transaction_status')
 ) }}
 FROM {{ ref('fct_offer_transactions') }} fct
 WHERE offer_type!='informational'
